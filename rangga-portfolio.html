@@ -1,0 +1,1691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rangga Prasetya Adiwijaya — Electrical Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@300;400;500&family=Bricolage+Grotesque:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:       #0a0a0a;
+  --ink-mid:   #1a1a1a;
+  --ink-light: #2c2c2c;
+  --border:    #2a2a2a;
+  --muted:     #4a4a4a;
+  --subtle:    #6a6a6a;
+  --body:      #9a9a9a;
+  --text:      #d4d0c8;
+  --white:     #f0ece2;
+  --gold:      #c8a96e;
+  --gold-dim:  rgba(200,169,110,0.12);
+  --gold-glow: rgba(200,169,110,0.06);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  background: var(--ink);
+  color: var(--text);
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 300;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+::selection { background: var(--gold-dim); color: var(--white); }
+
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--ink); }
+::-webkit-scrollbar-thumb { background: var(--gold); }
+
+/* ─── LAYOUT ─────────────────────────────────────── */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+.section { padding: 120px 0; }
+.divider { height: 1px; background: var(--border); }
+
+/* ─── NAVIGATION ─────────────────────────────────── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 24px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.3s, border-bottom 0.3s;
+}
+nav.scrolled {
+  background: rgba(10,10,10,0.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.nav-links {
+  display: flex;
+  gap: 36px;
+  list-style: none;
+}
+.nav-links a {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--subtle);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--gold); }
+.nav-hire {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: var(--gold);
+  padding: 10px 24px;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.nav-hire:hover { opacity: 0.85; }
+
+/* ─── HERO ───────────────────────────────────────── */
+#hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  padding-top: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-grain {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-grid-lines {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(200,169,110,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200,169,110,0.03) 1px, transparent 1px);
+  background-size: 80px 80px;
+  pointer-events: none;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 40px 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.hero-label::before {
+  content: '';
+  width: 40px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.hero-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(72px, 12vw, 180px);
+  line-height: 0.88;
+  letter-spacing: -0.01em;
+  color: var(--white);
+  margin-bottom: 40px;
+}
+.hero-name .line-italic {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  color: var(--gold);
+}
+
+.hero-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1px;
+  border-top: 1px solid var(--border);
+  padding-top: 32px;
+}
+.hero-meta-item {
+  padding: 0 32px 0 0;
+}
+.hero-meta-item:first-child { padding-left: 0; }
+.hero-meta-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.hero-meta-value {
+  font-size: 14px;
+  color: var(--text);
+  font-weight: 400;
+}
+
+.hero-cta-row {
+  display: flex;
+  gap: 16px;
+  margin-top: 48px;
+}
+.btn-primary {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: var(--gold);
+  padding: 14px 36px;
+  text-decoration: none;
+  display: inline-block;
+  transition: opacity 0.2s;
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid var(--border);
+  padding: 14px 36px;
+  text-decoration: none;
+  display: inline-block;
+  transition: border-color 0.2s, color 0.2s;
+}
+.btn-secondary:hover { border-color: var(--gold); }
+
+.hero-scroll-indicator {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+.scroll-line {
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(to bottom, var(--muted), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(0.6); }
+}
+
+/* ─── SECTION HEADERS ────────────────────────────── */
+.section-header {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: baseline;
+  gap: 24px;
+  margin-bottom: 72px;
+}
+.section-number {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+}
+.section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(40px, 6vw, 80px);
+  line-height: 0.9;
+  color: var(--white);
+  letter-spacing: 0.02em;
+}
+.section-title em {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  color: var(--gold);
+}
+.section-rule {
+  height: 1px;
+  background: var(--border);
+  grid-column: 1 / -1;
+  margin-top: 20px;
+}
+
+/* ─── ABOUT ──────────────────────────────────────── */
+#about { background: var(--ink); }
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+.about-text p {
+  font-size: 15px;
+  color: var(--body);
+  line-height: 1.85;
+  margin-bottom: 20px;
+}
+.about-text p strong {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.about-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+  margin-top: 40px;
+}
+.stat-block {
+  background: var(--ink);
+  padding: 28px 24px;
+}
+.stat-number {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 52px;
+  line-height: 1;
+  color: var(--gold);
+  letter-spacing: 0.02em;
+}
+.stat-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--subtle);
+  margin-top: 8px;
+}
+
+.about-right {}
+.about-info-item {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  border-bottom: 1px solid var(--border);
+  padding: 16px 0;
+}
+.info-key {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.info-val {
+  font-size: 14px;
+  color: var(--text);
+}
+.info-val a {
+  color: var(--gold);
+  text-decoration: none;
+}
+
+.cv-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 36px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid var(--gold-dim);
+  padding: 14px 28px;
+  text-decoration: none;
+  transition: background 0.2s, border-color 0.2s;
+  background: var(--gold-glow);
+}
+.cv-download:hover { background: var(--gold-dim); border-color: var(--gold); }
+.cv-arrow { font-size: 14px; }
+
+/* ─── SKILLS ─────────────────────────────────────── */
+#skills { background: var(--ink-mid); }
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border);
+}
+.skill-group {
+  background: var(--ink-mid);
+  padding: 40px 32px;
+}
+.skill-group-title {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 28px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+.skill-tag {
+  display: inline-block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--body);
+  border: 1px solid var(--border);
+  padding: 6px 12px;
+  margin: 4px 4px 4px 0;
+  transition: border-color 0.2s, color 0.2s;
+  cursor: default;
+}
+.skill-tag:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ─── EXPERIENCE ─────────────────────────────────── */
+#experience { background: var(--ink); }
+
+.exp-list { display: flex; flex-direction: column; }
+.exp-item {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 60px;
+  padding: 48px 0;
+  border-bottom: 1px solid var(--border);
+}
+.exp-item:first-child { border-top: 1px solid var(--border); }
+.exp-date {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  padding-top: 4px;
+}
+.exp-date .period {
+  display: block;
+  color: var(--gold);
+  font-size: 10px;
+  margin-top: 6px;
+}
+.exp-title {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 6px;
+  line-height: 1.2;
+}
+.exp-org {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+.exp-desc {
+  font-size: 14px;
+  color: var(--body);
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+.exp-bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.exp-bullets li {
+  font-size: 13px;
+  color: var(--subtle);
+  padding-left: 20px;
+  position: relative;
+  line-height: 1.6;
+}
+.exp-bullets li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 8px;
+  height: 1px;
+  background: var(--gold);
+}
+.exp-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+}
+.exp-tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  padding: 4px 10px;
+}
+
+/* ─── PROJECTS ───────────────────────────────────── */
+#projects { background: var(--ink-mid); }
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+}
+.project-card {
+  background: var(--ink-mid);
+  padding: 40px 36px;
+  display: flex;
+  flex-direction: column;
+  transition: background 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s;
+}
+.project-card:hover { background: var(--ink-light); }
+.project-card:hover::before { transform: scaleX(1); }
+
+.project-number {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 64px;
+  line-height: 1;
+  color: var(--border);
+  margin-bottom: 24px;
+  letter-spacing: 0.05em;
+  transition: color 0.3s;
+}
+.project-card:hover .project-number { color: var(--gold-dim); }
+.project-category {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+.project-title {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 16px;
+  line-height: 1.3;
+}
+.project-desc {
+  font-size: 13px;
+  color: var(--body);
+  line-height: 1.75;
+  flex: 1;
+  margin-bottom: 24px;
+}
+.project-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.stack-tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--subtle);
+  border: 1px solid var(--border);
+  padding: 3px 8px;
+}
+
+/* ─── CERTIFICATIONS ─────────────────────────────── */
+#certifications { background: var(--ink); }
+
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--border);
+}
+.cert-item {
+  background: var(--ink);
+  padding: 36px 40px;
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  transition: background 0.2s;
+}
+.cert-item:hover { background: var(--ink-mid); }
+.cert-index {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--gold);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.cert-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+.cert-issuer {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--subtle);
+}
+
+/* ─── ACHIEVEMENTS ───────────────────────────────── */
+#achievements { background: var(--ink-mid); }
+
+.achieve-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+}
+.achieve-item {
+  background: var(--ink-mid);
+  padding: 36px 32px;
+  transition: background 0.2s;
+}
+.achieve-item:hover { background: var(--ink-light); }
+.achieve-year {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 48px;
+  color: var(--border);
+  line-height: 1;
+  margin-bottom: 16px;
+}
+.achieve-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.achieve-detail {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--subtle);
+  line-height: 1.6;
+}
+.achieve-badge {
+  display: inline-block;
+  margin-top: 12px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid var(--gold-dim);
+  padding: 4px 10px;
+}
+
+/* ─── CONTACT ────────────────────────────────────── */
+#contact {
+  background: var(--ink);
+  padding-bottom: 160px;
+}
+
+.contact-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 120px;
+  align-items: start;
+}
+
+.contact-headline {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(48px, 7vw, 100px);
+  line-height: 0.9;
+  color: var(--white);
+  margin-bottom: 32px;
+}
+.contact-headline em {
+  display: block;
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  color: var(--gold);
+}
+.contact-intro {
+  font-size: 15px;
+  color: var(--body);
+  line-height: 1.8;
+}
+
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--border);
+}
+.contact-link {
+  background: var(--ink);
+  padding: 24px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.contact-link:hover { background: var(--ink-mid); }
+.contact-link-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.contact-link-value {
+  font-size: 15px;
+  color: var(--text);
+}
+.contact-arrow {
+  color: var(--gold);
+  font-size: 20px;
+  transform: rotate(-45deg);
+  transition: transform 0.2s;
+}
+.contact-link:hover .contact-arrow { transform: rotate(0deg); }
+
+/* ─── FOOTER ─────────────────────────────────────── */
+footer {
+  background: var(--ink-mid);
+  border-top: 1px solid var(--border);
+  padding: 32px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-copy {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+}
+.footer-mark {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--subtle);
+}
+.footer-mark span { color: var(--gold); }
+
+/* ─── LIVE CHAT WIDGET ───────────────────────────── */
+.chat-toggle {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  z-index: 200;
+  width: 52px;
+  height: 52px;
+  background: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  border: none;
+}
+.chat-toggle:hover { opacity: 0.85; }
+.chat-toggle svg { width: 20px; height: 20px; fill: var(--ink); }
+
+.chat-panel {
+  position: fixed;
+  bottom: 108px;
+  right: 40px;
+  z-index: 200;
+  width: 340px;
+  background: var(--ink-mid);
+  border: 1px solid var(--border);
+  display: none;
+  flex-direction: column;
+}
+.chat-panel.open { display: flex; }
+
+.chat-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.chat-name {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--white);
+}
+.chat-status {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--subtle);
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.status-dot {
+  width: 6px; height: 6px;
+  background: #4ade80;
+  border-radius: 50%;
+  box-shadow: 0 0 6px #4ade80;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+.chat-close {
+  background: none;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  padding: 0;
+  transition: color 0.2s;
+}
+.chat-close:hover { color: var(--text); }
+
+.chat-messages {
+  height: 280px;
+  overflow-y: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.chat-messages::-webkit-scrollbar { width: 2px; }
+.chat-messages::-webkit-scrollbar-thumb { background: var(--border); }
+
+.msg { display: flex; flex-direction: column; max-width: 80%; }
+.msg.bot { align-self: flex-start; }
+.msg.user { align-self: flex-end; }
+.msg-bubble {
+  font-size: 13px;
+  line-height: 1.6;
+  padding: 10px 16px;
+}
+.msg.bot .msg-bubble {
+  background: var(--ink-light);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.msg.user .msg-bubble {
+  background: var(--gold-dim);
+  border: 1px solid rgba(200,169,110,0.25);
+  color: var(--white);
+}
+.msg-time {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin-top: 6px;
+}
+.msg.user .msg-time { text-align: right; }
+
+.chat-input-row {
+  border-top: 1px solid var(--border);
+  display: flex;
+}
+.chat-input {
+  flex: 1;
+  background: none;
+  border: none;
+  padding: 16px 20px;
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 13px;
+  color: var(--text);
+  outline: none;
+}
+.chat-input::placeholder { color: var(--muted); }
+.chat-send {
+  background: var(--gold);
+  border: none;
+  width: 52px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s;
+  flex-shrink: 0;
+}
+.chat-send:hover { opacity: 0.85; }
+.chat-send svg { width: 16px; height: 16px; fill: var(--ink); }
+
+/* ─── NOTICE BAR ─────────────────────────────────── */
+.notice-bar {
+  background: var(--gold-dim);
+  border-bottom: 1px solid rgba(200,169,110,0.2);
+  padding: 10px 40px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.notice-bar-text {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* ─── ANIMATIONS ─────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+/* ─── RESPONSIVE ─────────────────────────────────── */
+@media (max-width: 1024px) {
+  .skills-grid { grid-template-columns: repeat(2, 1fr); }
+  .projects-grid { grid-template-columns: repeat(2, 1fr); }
+  .achieve-list { grid-template-columns: repeat(2, 1fr); }
+  .about-grid { grid-template-columns: 1fr; gap: 48px; }
+  .contact-inner { grid-template-columns: 1fr; gap: 60px; }
+}
+@media (max-width: 768px) {
+  .container, nav, footer { padding-left: 24px; padding-right: 24px; }
+  .hero-content { padding: 0 24px 60px; }
+  .hero-meta { grid-template-columns: 1fr; gap: 16px; }
+  .skills-grid { grid-template-columns: 1fr; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .cert-grid { grid-template-columns: 1fr; }
+  .achieve-list { grid-template-columns: 1fr; }
+  .exp-item { grid-template-columns: 1fr; gap: 12px; }
+  .nav-links { display: none; }
+  .chat-panel { right: 20px; left: 20px; width: auto; }
+  .chat-toggle { right: 20px; bottom: 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav id="mainNav">
+  <div class="nav-logo">Rangga Prasetya</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:razetya100@gmail.com" class="nav-hire">Hire Me</a>
+</nav>
+
+<!-- Hero -->
+<section id="hero">
+  <div class="hero-grain"></div>
+  <div class="hero-grid-lines"></div>
+  <div class="hero-content">
+    <div class="hero-label">Electrical Engineer — Jakarta, Indonesia</div>
+    <h1 class="hero-name">
+      Rangga<br>
+      <span class="line-italic">Prasetya</span>
+    </h1>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <div class="hero-meta-label">Specialization</div>
+        <div class="hero-meta-value">Robotics, IoT, AI &amp; Embedded Systems</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="hero-meta-label">Institution</div>
+        <div class="hero-meta-value">Institut Teknologi PLN — Electrical Engineering</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="hero-meta-label">Status</div>
+        <div class="hero-meta-value">Available for collaboration and new projects</div>
+      </div>
+    </div>
+    <div class="hero-cta-row">
+      <a href="#projects" class="btn-primary">View Projects</a>
+      <a href="mailto:razetya100@gmail.com" class="btn-secondary">Start a Conversation</a>
+    </div>
+  </div>
+  <div class="hero-scroll-indicator">
+    <div class="scroll-line"></div>
+    Scroll
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- About -->
+<section id="about" class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-number">01</div>
+      <div>
+        <h2 class="section-title">About <em>Me</em></h2>
+      </div>
+      <div class="section-rule"></div>
+    </div>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>
+          I am an <strong>Electrical Engineering graduate</strong> from Institut Teknologi PLN with a GPA of 3.67/4.00, specializing in the intersection of robotics, embedded systems, and machine learning. I build intelligent systems that bridge hardware and software — from low-level firmware to cloud-connected ML pipelines.
+        </p>
+        <p>
+          My work spans autonomous robotics, IoT infrastructure, computer vision, and big data engineering. I approach each project with a systems-thinking mindset, having led teams in national competitions, industry internships, and funded research programs.
+        </p>
+        <p>
+          I hold an official government competency certification as <strong>Team Leader in Low Voltage Utilization Design</strong> (Qualification Code: M.71.141.01.KUALIFIKASI.3.MANTER), alongside recognition as <strong>Outstanding Student</strong> (Mahasiswa Berprestasi) by Institut Teknologi PLN in 2025.
+        </p>
+        <div class="about-stats">
+          <div class="stat-block">
+            <div class="stat-number">3.67</div>
+            <div class="stat-label">GPA / 4.00</div>
+          </div>
+          <div class="stat-block">
+            <div class="stat-number">6+</div>
+            <div class="stat-label">Major Projects</div>
+          </div>
+          <div class="stat-block">
+            <div class="stat-number">3</div>
+            <div class="stat-label">Years Active</div>
+          </div>
+          <div class="stat-block">
+            <div class="stat-number">5+</div>
+            <div class="stat-label">Certifications</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-right reveal reveal-delay-2">
+        <div class="about-info-item">
+          <div class="info-key">Full Name</div>
+          <div class="info-val">Rangga Prasetya Adiwijaya</div>
+        </div>
+        <div class="about-info-item">
+          <div class="info-key">Location</div>
+          <div class="info-val">Jakarta, Indonesia</div>
+        </div>
+        <div class="about-info-item">
+          <div class="info-key">Email</div>
+          <div class="info-val"><a href="mailto:razetya100@gmail.com">razetya100@gmail.com</a></div>
+        </div>
+        <div class="about-info-item">
+          <div class="info-key">Phone</div>
+          <div class="info-val">+62 889 7175 9690</div>
+        </div>
+        <div class="about-info-item">
+          <div class="info-key">Instagram</div>
+          <div class="info-val"><a href="https://instagram.com/rangga.vibes" target="_blank">@rangga.vibes</a></div>
+        </div>
+        <div class="about-info-item">
+          <div class="info-key">GitHub</div>
+          <div class="info-val"><a href="https://github.com/RaiJen-code" target="_blank">github.com/RaiJen-code</a></div>
+        </div>
+        <div class="about-info-item">
+          <div class="info-key">Degree</div>
+          <div class="info-val">B.Eng Electrical Engineering, IT-PLN (2021–2025)</div>
+        </div>
+        <div class="about-info-item">
+          <div class="info-key">Scholarship</div>
+          <div class="info-val">PLN Achievement Scholarship Recipient, 2022 Cohort</div>
+        </div>
+        <a href="rangga_resume.pdf" download class="cv-download">
+          <span class="cv-arrow">&#8595;</span>
+          Download Full CV
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- Skills -->
+<section id="skills" class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-number">02</div>
+      <div>
+        <h2 class="section-title">Technical <em>Stack</em></h2>
+      </div>
+      <div class="section-rule"></div>
+    </div>
+    <div class="skills-grid reveal">
+      <div class="skill-group">
+        <div class="skill-group-title">Robotics &amp; Embedded</div>
+        <span class="skill-tag">ROS / ROS2</span>
+        <span class="skill-tag">Arduino</span>
+        <span class="skill-tag">ESP32</span>
+        <span class="skill-tag">Wemos</span>
+        <span class="skill-tag">Jetson Nano</span>
+        <span class="skill-tag">Raspberry Pi</span>
+        <span class="skill-tag">Orange Pi</span>
+        <span class="skill-tag">CoppeliaSim</span>
+        <span class="skill-tag">Servo Control</span>
+        <span class="skill-tag">CUDA</span>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">AI &amp; Computer Vision</div>
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">TensorFlow</span>
+        <span class="skill-tag">PyTorch</span>
+        <span class="skill-tag">Keras</span>
+        <span class="skill-tag">OpenCV</span>
+        <span class="skill-tag">MediaPipe</span>
+        <span class="skill-tag">YOLO</span>
+        <span class="skill-tag">TFLite</span>
+        <span class="skill-tag">NLP / Sentiment</span>
+        <span class="skill-tag">Time-Series ML</span>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">IoT &amp; Big Data</div>
+        <span class="skill-tag">MQTT</span>
+        <span class="skill-tag">Blynk API</span>
+        <span class="skill-tag">Apache Kafka</span>
+        <span class="skill-tag">Apache Spark</span>
+        <span class="skill-tag">Docker</span>
+        <span class="skill-tag">MySQL</span>
+        <span class="skill-tag">SQLite</span>
+        <span class="skill-tag">Data Pipeline</span>
+        <span class="skill-tag">Modbus</span>
+        <span class="skill-tag">Laravel (PHP)</span>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Software &amp; Design</div>
+        <span class="skill-tag">C / C++</span>
+        <span class="skill-tag">JavaScript</span>
+        <span class="skill-tag">SQL</span>
+        <span class="skill-tag">Autodesk Inventor</span>
+        <span class="skill-tag">3D Printing</span>
+        <span class="skill-tag">PCB Design</span>
+        <span class="skill-tag">Git</span>
+        <span class="skill-tag">Web Dashboard</span>
+        <span class="skill-tag">Data Annotation</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- Experience -->
+<section id="experience" class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-number">03</div>
+      <div>
+        <h2 class="section-title">Work <em>Experience</em></h2>
+      </div>
+      <div class="section-rule"></div>
+    </div>
+    <div class="exp-list">
+
+      <div class="exp-item reveal">
+        <div class="exp-date">
+          Diginusa — Kompas Gramedia
+          <span class="period">2025 — Present</span>
+        </div>
+        <div>
+          <div class="exp-title">Robotics Instructor</div>
+          <div class="exp-org">Elementary School Education Division</div>
+          <ul class="exp-bullets">
+            <li>Taught foundational robotics and computational thinking through project-based learning for elementary students.</li>
+            <li>Designed modular lesson plans covering electronics, sensors, actuators, and microcontroller programming.</li>
+            <li>Guided students in building and programming sensor-based robotic systems.</li>
+            <li>Evaluated student progress and provided structured feedback to support STEM development.</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="exp-tag">Robotics Education</span>
+            <span class="exp-tag">Curriculum Design</span>
+            <span class="exp-tag">Microcontrollers</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-date">
+          PT PLN ICON PLUS
+          <span class="period">Sep 2024 — Jan 2025</span>
+        </div>
+        <div>
+          <div class="exp-title">Software Development Intern</div>
+          <div class="exp-org">Sub-bidang Pengembang Aplikasi 1</div>
+          <ul class="exp-bullets">
+            <li>Developed a big data communication pipeline using Docker, Kafka, and Apache Spark with full database integration.</li>
+            <li>Built a power leakage monitoring tool for ADW310-4G Power Meters using Laravel and a big data framework.</li>
+            <li>Created data annotation pipelines for machine learning sentiment analysis on the Pegadaian application.</li>
+            <li>Designed and implemented Modbus communication analysis for real-time power meter monitoring.</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="exp-tag">Docker</span>
+            <span class="exp-tag">Kafka</span>
+            <span class="exp-tag">Spark</span>
+            <span class="exp-tag">Laravel</span>
+            <span class="exp-tag">IoT</span>
+            <span class="exp-tag">MQTT</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-date">
+          Institut Teknologi PLN
+          <span class="period">2024 — 2025</span>
+        </div>
+        <div>
+          <div class="exp-title">Microcontroller Laboratory Assistant</div>
+          <div class="exp-org">Electrical Engineering Department</div>
+          <ul class="exp-bullets">
+            <li>Taught and supervised practical sessions on Arduino, Wemos, and ESP32 for 5th semester undergraduate students.</li>
+            <li>Designed and implemented IoT systems utilizing Blynk API, MQTT, and web-based dashboards.</li>
+            <li>Developed teaching modules and experiment guidelines to standardize student learning outcomes.</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="exp-tag">Arduino</span>
+            <span class="exp-tag">ESP32</span>
+            <span class="exp-tag">IoT</span>
+            <span class="exp-tag">MQTT</span>
+            <span class="exp-tag">Teaching</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-date">
+          Intelligent Robotic Club — IT-PLN
+          <span class="period">2024 — 2025</span>
+        </div>
+        <div>
+          <div class="exp-title">Club Supervisor</div>
+          <div class="exp-org">@irc_itpln</div>
+          <ul class="exp-bullets">
+            <li>Mentored members in robotics development covering ROS, electronics, and hardware-software integration.</li>
+            <li>Delivered hands-on training in 3D modeling and printing for robotic component prototyping.</li>
+            <li>Provided expertise in Jetson Nano, Raspberry Pi, and Orange Pi for embedded and AI-powered applications.</li>
+            <li>Organized team projects and developed technical documentation for robotics training standardization.</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="exp-tag">ROS2</span>
+            <span class="exp-tag">Jetson Nano</span>
+            <span class="exp-tag">3D Printing</span>
+            <span class="exp-tag">Leadership</span>
+            <span class="exp-tag">Mentoring</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-date">
+          Institut Teknologi PLN
+          <span class="period">2022 — 2025</span>
+        </div>
+        <div>
+          <div class="exp-title">Language Development Center Assistant</div>
+          <div class="exp-org">3 Consecutive Periods</div>
+          <ul class="exp-bullets">
+            <li>Managed examinations for over 1,000 students annually across ELT, BEES, and E-MOS programs.</li>
+            <li>Served as supervising proctor, tutor, and main moderator for the English Conversation program.</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="exp-tag">Administration</span>
+            <span class="exp-tag">English Testing</span>
+            <span class="exp-tag">Communication</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- Projects -->
+<section id="projects" class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-number">04</div>
+      <div>
+        <h2 class="section-title">Selected <em>Projects</em></h2>
+      </div>
+      <div class="section-rule"></div>
+    </div>
+    <div class="projects-grid">
+
+      <div class="project-card reveal">
+        <div class="project-number">01</div>
+        <div class="project-category">AI Robotics</div>
+        <div class="project-title">S.O.M.E.B.O.D.Y.</div>
+        <div class="project-desc">
+          Smart Omni-functional Machine for Enhanced Brainstorming, Observation, and Decision-support. An AI-powered autonomous robot built on Jetson Nano + CUDA capable of multimodal perception — seeing, moving, speaking, listening, thinking, and remembering. Integrates GPT-4 Vision, speech recognition, person tracking, and persistent conversation memory via SQLite.
+        </div>
+        <div class="project-stack">
+          <span class="stack-tag">Jetson Nano</span>
+          <span class="stack-tag">CUDA</span>
+          <span class="stack-tag">Python</span>
+          <span class="stack-tag">OpenCV</span>
+          <span class="stack-tag">GPT-4</span>
+          <span class="stack-tag">SQLite</span>
+          <span class="stack-tag">TTS</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal reveal-delay-1">
+        <div class="project-number">02</div>
+        <div class="project-category">Computer Vision</div>
+        <div class="project-title">Robotic Arm — Computer Vision Control</div>
+        <div class="project-desc">
+          Computer vision-based robotic arm using MediaPipe Hands and Jetson Nano that replicates complex human hand gestures for hazardous environment operation. Implemented 21-landmark hand detection with vector trigonometric angle calculations across 6 servo motors. Achieved 75% average finger movement accuracy. Published in Jurnal Ilmiah Setrum. Received IDR 6,000,000 in research funding.
+        </div>
+        <div class="project-stack">
+          <span class="stack-tag">MediaPipe</span>
+          <span class="stack-tag">Jetson Nano</span>
+          <span class="stack-tag">Servo Control</span>
+          <span class="stack-tag">PCA9685</span>
+          <span class="stack-tag">Python</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal reveal-delay-2">
+        <div class="project-number">03</div>
+        <div class="project-category">Big Data &amp; IoT</div>
+        <div class="project-title">ADW310-4G Power Meter Monitoring Pipeline</div>
+        <div class="project-desc">
+          Enterprise-grade data pipeline for real-time monitoring of industrial power meters at PT PLN ICON+. Built with Docker containerization, Apache Kafka as the message broker, Apache Spark for stream processing, and a Laravel web application for visualization. Includes Modbus communication layer and full MySQL persistence.
+        </div>
+        <div class="project-stack">
+          <span class="stack-tag">Docker</span>
+          <span class="stack-tag">Kafka</span>
+          <span class="stack-tag">Spark</span>
+          <span class="stack-tag">Laravel</span>
+          <span class="stack-tag">Modbus</span>
+          <span class="stack-tag">MQTT</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-number">04</div>
+        <div class="project-category">IoT / Smart Farming</div>
+        <div class="project-title">Si Jago Merah — Chili Farm Automation</div>
+        <div class="project-desc">
+          IoT-based smart aeroponic farming system for red chili cultivation at The Learning Farm, Cianjur. Designed a custom growth-phase algorithm optimizing fertilizer dosage, water flow, and pesticide application for vegetative and generative stages. Led as Project Manager, delivering full firmware design, software development, and hardware assembly. Featured in MSIB Indobot Academy program.
+        </div>
+        <div class="project-stack">
+          <span class="stack-tag">ESP32</span>
+          <span class="stack-tag">Arduino</span>
+          <span class="stack-tag">MQTT</span>
+          <span class="stack-tag">Blynk</span>
+          <span class="stack-tag">Aeroponics</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal reveal-delay-1">
+        <div class="project-number">05</div>
+        <div class="project-category">AI / Environmental</div>
+        <div class="project-title">FILTORA — Intelligent Air Purification</div>
+        <div class="project-desc">
+          PKM-KC 2025 national research grant recipient. Intelligent cigarette smoke filtration system integrating a Pseudomonas putida bioreactor with activated carbon, IoT sensor calibration, and machine learning for real-time air quality monitoring. Role: Embedded System Engineer — sensor integration, hardware-software interface, automation control logic, and data pipeline for ML visualization.
+        </div>
+        <div class="project-stack">
+          <span class="stack-tag">Embedded C</span>
+          <span class="stack-tag">IoT Sensors</span>
+          <span class="stack-tag">Machine Learning</span>
+          <span class="stack-tag">PKM-KC Funded</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal reveal-delay-2">
+        <div class="project-number">06</div>
+        <div class="project-category">Humanoid Robotics</div>
+        <div class="project-title">DANCETRON — KRI 2024</div>
+        <div class="project-desc">
+          Core team member in the Indonesian Robot Contest (KRI) 2024 — Robot Dance category. Built a humanoid dance robot performing the Oleg Tamulilingan traditional Balinese dance. Responsible for designing and developing the robot's hemodynamic system for fluid, expressive motion. Integrated actuators and sensors into the control system; conducted performance testing through regional selection stages.
+        </div>
+        <div class="project-stack">
+          <span class="stack-tag">Arduino</span>
+          <span class="stack-tag">Autodesk Inventor</span>
+          <span class="stack-tag">CAD Design</span>
+          <span class="stack-tag">Servo Systems</span>
+          <span class="stack-tag">Python</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- Certifications -->
+<section id="certifications" class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-number">05</div>
+      <div>
+        <h2 class="section-title">Certifications &amp; <em>Recognition</em></h2>
+      </div>
+      <div class="section-rule"></div>
+    </div>
+    <div class="cert-grid reveal">
+      <div class="cert-item">
+        <div class="cert-index">01</div>
+        <div>
+          <div class="cert-name">Competency Certificate — Low Voltage Utilization Design</div>
+          <div class="cert-issuer">PT Sentra Teknologi Terapan · Code: M.71.141.01.KUALIFIKASI.3.MANTER</div>
+        </div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-index">02</div>
+        <div>
+          <div class="cert-name">Internship Certificate — Application Development Division</div>
+          <div class="cert-issuer">PLN ICON+ · September 2024 – January 2025</div>
+        </div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-index">03</div>
+        <div>
+          <div class="cert-name">Team Member Certificate — Indonesian Robot Contest (KRI) 2024</div>
+          <div class="cert-issuer">Puspresnas / BPTI · Robot Dance Division, Regional Level</div>
+        </div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-index">04</div>
+        <div>
+          <div class="cert-name">Copyright Registration — Robotic Arm Computer Vision Journal</div>
+          <div class="cert-issuer">Intellectual Property Rights (HKI) · DOI: 10.62870/setrum.v14i1.30964</div>
+        </div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-index">05</div>
+        <div>
+          <div class="cert-name">MSIB Certificate — Internet of Things Engineer Camp</div>
+          <div class="cert-issuer">Indobot Academy · Smart Device Project Program</div>
+        </div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-index">06</div>
+        <div>
+          <div class="cert-name">Outstanding Student Award — Mahasiswa Berprestasi</div>
+          <div class="cert-issuer">Institut Teknologi PLN · Issued September 2025</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- Achievements -->
+<section id="achievements" class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-number">06</div>
+      <div>
+        <h2 class="section-title">Awards &amp; <em>Achievements</em></h2>
+      </div>
+      <div class="section-rule"></div>
+    </div>
+    <div class="achieve-list reveal">
+      <div class="achieve-item">
+        <div class="achieve-year">2025</div>
+        <div class="achieve-title">PKM-KC Research Grant — FILTORA</div>
+        <div class="achieve-detail">National competitive research funding from Kemdikbudristek / Belmawa for intelligent air purification system development.</div>
+        <div class="achieve-badge">National Grant</div>
+      </div>
+      <div class="achieve-item">
+        <div class="achieve-year">2025</div>
+        <div class="achieve-title">Outstanding Student Award</div>
+        <div class="achieve-detail">Mahasiswa Berprestasi — recognized by Institut Teknologi PLN for exceptional academic and extracurricular achievement.</div>
+        <div class="achieve-badge">Institutional Award</div>
+      </div>
+      <div class="achieve-item">
+        <div class="achieve-year">2024</div>
+        <div class="achieve-title">Student Research Challenge — IDR 6,000,000 Funding</div>
+        <div class="achieve-detail">Received research funding for the Robotic Arm Computer Vision project. Published in Jurnal Ilmiah Setrum (peer-reviewed).</div>
+        <div class="achieve-badge">Research Funded</div>
+      </div>
+      <div class="achieve-item">
+        <div class="achieve-year">2024</div>
+        <div class="achieve-title">KRI 2024 — National Robot Contest</div>
+        <div class="achieve-detail">Core team member, DANCETRON — Robot Dance category. Regional Level, organized by Puspresnas and BPTI.</div>
+        <div class="achieve-badge">National Competition</div>
+      </div>
+      <div class="achieve-item">
+        <div class="achieve-year">2023</div>
+        <div class="achieve-title">NUDC — 1st Place Winner</div>
+        <div class="achieve-detail">National University Debating Championship — Puspresnas Competition Fest 2023, organized by Institut Teknologi PLN.</div>
+        <div class="achieve-badge">1st Place</div>
+      </div>
+      <div class="achieve-item">
+        <div class="achieve-year">2022</div>
+        <div class="achieve-title">PLN Achievement Scholarship</div>
+        <div class="achieve-detail">Awarded PLN Group achievement scholarship for outstanding academic performance in Electrical Engineering, 2022–2025.</div>
+        <div class="achieve-badge">Full Scholarship</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- Contact -->
+<section id="contact" class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-number">07</div>
+      <div>
+        <h2 class="section-title">Get in <em>Touch</em></h2>
+      </div>
+      <div class="section-rule"></div>
+    </div>
+    <div class="contact-inner">
+      <div class="reveal">
+        <div class="contact-headline">
+          Let's Build<br><em>Together</em>
+        </div>
+        <p class="contact-intro">
+          I am open to new collaborations, research partnerships, freelance projects, and full-time opportunities in robotics, embedded systems, AI, and IoT. Reach out and let's discuss what we can create.
+        </p>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <div class="contact-links">
+          <a href="mailto:razetya100@gmail.com" class="contact-link">
+            <div>
+              <div class="contact-link-label">Email</div>
+              <div class="contact-link-value">razetya100@gmail.com</div>
+            </div>
+            <div class="contact-arrow">&#8599;</div>
+          </a>
+          <a href="tel:+6288971759690" class="contact-link">
+            <div>
+              <div class="contact-link-label">WhatsApp / Phone</div>
+              <div class="contact-link-value">+62 889 7175 9690</div>
+            </div>
+            <div class="contact-arrow">&#8599;</div>
+          </a>
+          <a href="https://instagram.com/rangga.vibes" target="_blank" class="contact-link">
+            <div>
+              <div class="contact-link-label">Instagram</div>
+              <div class="contact-link-value">@rangga.vibes</div>
+            </div>
+            <div class="contact-arrow">&#8599;</div>
+          </a>
+          <a href="https://github.com/RaiJen-code" target="_blank" class="contact-link">
+            <div>
+              <div class="contact-link-label">GitHub</div>
+              <div class="contact-link-value">github.com/RaiJen-code</div>
+            </div>
+            <div class="contact-arrow">&#8599;</div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-copy">Rangga Prasetya Adiwijaya — 2025</div>
+  <div class="footer-mark">Electrical Engineer · Jakarta, Indonesia · <span>Available for Work</span></div>
+</footer>
+
+<!-- Live Chat Widget -->
+<button class="chat-toggle" onclick="toggleChat()" aria-label="Open chat">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
+  </svg>
+</button>
+
+<div class="chat-panel" id="chatPanel">
+  <div class="chat-header">
+    <div>
+      <div class="chat-name">Rangga Prasetya</div>
+      <div class="chat-status">
+        <div class="status-dot"></div>
+        Usually replies within a few hours
+      </div>
+    </div>
+    <button class="chat-close" onclick="toggleChat()">&#215;</button>
+  </div>
+  <div class="chat-messages" id="chatMessages">
+    <div class="msg bot">
+      <div class="msg-bubble">Hello, I am Rangga. Feel free to ask about my work, projects, or availability for collaboration.</div>
+      <div class="msg-time">Now</div>
+    </div>
+  </div>
+  <div class="chat-input-row">
+    <input class="chat-input" id="chatInput" type="text" placeholder="Type a message..." maxlength="400" onkeydown="handleKey(event)">
+    <button class="chat-send" onclick="sendMessage()">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<script>
+// ─── NAV SCROLL ───────────────────────────────────
+window.addEventListener('scroll', () => {
+  document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// ─── REVEAL ANIMATION ─────────────────────────────
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ─── CHAT WIDGET ──────────────────────────────────
+function toggleChat() {
+  document.getElementById('chatPanel').classList.toggle('open');
+}
+
+const AUTO_REPLIES = {
+  default:      'Thank you for your message. I will get back to you via email or WhatsApp as soon as possible.',
+  hello:        'Hello! Happy to connect. You can ask about my projects, skills, or availability for collaboration.',
+  project:      'I have worked on robotics, IoT, AI, and big data projects. You can scroll through the Projects section, or I can elaborate on any specific area.',
+  hire:         'I am available for freelance, contract, and full-time opportunities in robotics, embedded systems, and AI. Please email razetya100@gmail.com with details.',
+  robot:        'Robotics is my core domain — from ROS2 control systems to computer vision-based manipulation. I would be happy to discuss your project requirements.',
+  contact:      'Best way to reach me: razetya100@gmail.com or WhatsApp +62 889 7175 9690.',
+  price:        'Project pricing depends on scope and complexity. Please reach out directly at razetya100@gmail.com with your project details for a proper estimate.',
+};
+
+function getReply(msg) {
+  const m = msg.toLowerCase();
+  if (/hello|hi|halo|hey/.test(m)) return AUTO_REPLIES.hello;
+  if (/project|work|portfolio|build/.test(m)) return AUTO_REPLIES.project;
+  if (/hire|job|work|opportunity|freelance|collaborate/.test(m)) return AUTO_REPLIES.hire;
+  if (/robot|arm|servo|ros/.test(m)) return AUTO_REPLIES.robot;
+  if (/contact|email|phone|reach/.test(m)) return AUTO_REPLIES.contact;
+  if (/price|cost|rate|fee|budget/.test(m)) return AUTO_REPLIES.price;
+  return AUTO_REPLIES.default;
+}
+
+function now() {
+  return new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+}
+
+function appendMsg(text, role) {
+  const wrap = document.getElementById('chatMessages');
+  const div = document.createElement('div');
+  div.className = `msg ${role}`;
+  div.innerHTML = `<div class="msg-bubble">${text}</div><div class="msg-time">${now()}</div>`;
+  wrap.appendChild(div);
+  wrap.scrollTop = wrap.scrollHeight;
+}
+
+function sendMessage() {
+  const input = document.getElementById('chatInput');
+  const text = input.value.trim();
+  if (!text) return;
+  appendMsg(text, 'user');
+  input.value = '';
+  // Send to n8n webhook (replace URL with actual n8n webhook)
+  const webhookUrl = '';
+  if (webhookUrl) {
+    fetch(webhookUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Source': 'portfolio-website' },
+      body: JSON.stringify({ message: text, timestamp: new Date().toISOString(), page: window.location.href }),
+    }).catch(() => {});
+  }
+  setTimeout(() => appendMsg(getReply(text), 'bot'), 900);
+}
+
+function handleKey(e) {
+  if (e.key === 'Enter') sendMessage();
+}
+</script>
+</body>
+</html>
